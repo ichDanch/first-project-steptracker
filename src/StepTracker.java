@@ -82,6 +82,7 @@ public class StepTracker {
     public void setStepTarget(int stepTarget) {
         if (stepTarget > 0) {
             this.stepTarget = stepTarget;
+            System.out.println("Готово! Новая цель: " + stepTarget + " шагов в день");
         } else
             System.out.println("Шаги не могут быть отрицательными");
     }

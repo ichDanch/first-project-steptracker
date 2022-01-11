@@ -4,39 +4,38 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        printMenu();
-        /*
-         Если ввести букву, получаю Exception. Не получилось сделать так, чтобы при вводе не числа,
-         программа выдавала сообщение "Нужно ввести целое число"
-         и продолжила работу. Пробовал через try-catch и do-while.
-         */
-        int userInput = scanner.nextInt();
         StepTracker stepTracker = new StepTracker();
+        int userInput;
 
-        while (userInput != 0) {
-            if (userInput == 1) {
-                System.out.println("Введите месяц от 1 до 12: ");
-                int month = scanner.nextInt();
-                System.out.println("Введите день от 1 до 30: ");
-                int day = scanner.nextInt();
-                System.out.println("Введите количество шагов: ");
-                int steps = scanner.nextInt();
-                stepTracker.saveStepsForDay(month, day, steps);
-            } else if (userInput == 2) {
-                System.out.println("Введите месяц от 1 до 12: ");
-                int month = scanner.nextInt();
-                stepTracker.monthlyStatistics(month);
-            } else if (userInput == 3) {
-                System.out.println("Введите желаемое количество шагов: ");
-                int stepTarget = scanner.nextInt();
-                stepTracker.setStepTarget(stepTarget);
-            } else if (userInput == 0) {
-                break;
-            } else {
-                System.out.println("Такой команды нет");
-            }
+        while (true) {
             printMenu();
-            userInput = scanner.nextInt();
+            try {
+                userInput = Integer.parseInt(scanner.next());
+                if (userInput == 1) {
+                    System.out.println("Введите месяц от 1 до 12: ");
+                    int month = scanner.nextInt();
+                    System.out.println("Введите день от 1 до 30: ");
+                    int day = scanner.nextInt();
+                    System.out.println("Введите количество шагов: ");
+                    int steps = scanner.nextInt();
+                    stepTracker.saveStepsForDay(month, day, steps);
+                } else if (userInput == 2) {
+                    System.out.println("Введите месяц от 1 до 12: ");
+                    int month = scanner.nextInt();
+                    stepTracker.monthlyStatistics(month);
+                } else if (userInput == 3) {
+                    System.out.println("Введите желаемое количество шагов: ");
+                    int stepTarget = scanner.nextInt();
+                    stepTracker.setStepTarget(stepTarget);
+                } else if (userInput == 0) {
+                    System.out.println("Выход");
+                    break;
+                } else {
+                    System.out.println("Такой команды нет");
+                }
+            } catch (Exception e) {
+                System.out.println("Нужно ввести целое число");
+            }
         }
         System.out.println("Программа завершена");
     }
@@ -49,5 +48,3 @@ public class Main {
         System.out.println("0 - Выход");
     }
 }
-
-
